@@ -19,6 +19,24 @@ const users = [
   },
 ];
 
+const animals = [
+  {
+    id: 1,
+    type: `cat`,
+    name: `Tom`,
+  },
+  {
+    id: 2,
+    type: `dog`,
+    name: `Jack`,
+  },
+  {
+    id: 2,
+    type: `lion`,
+    name: `Simba`,
+  },
+];
+
 rootContainerReact.render(
   <React.Fragment>
     <ul>
