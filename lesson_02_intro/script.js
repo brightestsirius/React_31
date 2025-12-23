@@ -37,10 +37,12 @@ const animals = [
   },
 ];
 
-rootContainerReact.render(
-  <React.Fragment>
-    <ul>
-      {users.map((item) => (
+const List = ({ list, color }) => {
+  const styles = { backgroundColor: color };
+
+  return Array.isArray(list) ? (
+    <ul style={styles}>
+      {list.map((item) => (
         <li key={item.id}>
           <ul>
             {Object.keys(item)
@@ -54,5 +56,15 @@ rootContainerReact.render(
         </li>
       ))}
     </ul>
-  </React.Fragment>
-);
+  ) : null;
+};
+
+const App = () => {
+  <React.Fragment>
+    <List list={users} color={"crimson"} />
+    <List list={animals} />
+    <List />
+  </React.Fragment>;
+};
+
+rootContainerReact.render(<App />);
