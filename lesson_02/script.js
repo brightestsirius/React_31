@@ -31,7 +31,7 @@ const animals = [
     name: `Jack`,
   },
   {
-    id: 2,
+    id: 3,
     type: `lion`,
     name: `Simba`,
   },
