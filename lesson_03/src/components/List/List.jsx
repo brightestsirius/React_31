@@ -7,43 +7,52 @@ const LIST = [`cat`, `dog`, `lion`, `tiger`, `parrot`].map((item) => ({
   value: item,
 }));
 
-export default function List({ removeList }) {
+// useState => state: {list, color} => rerender
+// useRef => ref: {intervalId}
+// props => props: {LIST} => rerender
+
+// 🟢 componentDidMount
+// 🟡 componentDidUpdate
+// 🔴 componentWillUnmout
+
+export default function List({removeComponent}) {
   const [list, setList] = useState(LIST);
   const [color, setColor] = useState(null);
 
-  const intIdRef = useRef();
+  const intervalId = useRef(); // intervalId.current
 
   useEffect(() => {
-    intIdRef.current = setInterval(() => {
+    console.log(`🟢 Establish connection with server`);
+
+    intervalId.current = setInterval(() => {
       console.log(`in interval`);
       setList((prevState) => prevState.slice(0, -1));
     }, 1000);
 
     return () => {
-      console.log(`🔴 in componentWillUnmount`);
-      clearInterval(intIdRef.current);
+      console.log(`🔴 Terminate connection with server`);
+      clearInterval(intervalId.current);
     };
   }, []);
 
   useEffect(() => {
     if (!list.length) {
-      clearInterval(intIdRef.current);
-      removeList();
+      clearInterval(intervalId.current);
     }
   }, [list]);
 
   useEffect(() => {
-    if (list.length <= Math.round(LIST.length / 2)) setColor(`crimson`);
+    if (list.length <= 3) setColor(`red`);
   }, [list]);
 
-  return (
+  return list.length ? (
     <div className="list">
-      <button onClick={removeList}>Close List Component</button>
+      <button onClick={removeComponent}>Close List component</button>
       <ul style={{ color }}>
         {list.map(({ id, value }) => (
           <li key={id}>{value}</li>
         ))}
       </ul>
     </div>
-  );
+  ) : null;
 }
