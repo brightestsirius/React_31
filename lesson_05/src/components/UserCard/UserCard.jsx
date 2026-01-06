@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 
-export default function UserCard({ user }) {
+import UserContext from "../../contexts/UserContext";
+
+export default function UserCard() {
+  const { user } = useContext(UserContext);
+
   return user ? (
     <ul className="card">
       {Object.keys(user).map((key) => (
         <li key={key}>
-          {key}: {String(user[key])}
+          {key}: {user[key]}
         </li>
       ))}
     </ul>

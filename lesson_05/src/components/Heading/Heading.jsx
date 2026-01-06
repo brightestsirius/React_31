@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 
-export default function Heading({ color }) {
+import ThemeContext from "../../contexts/ThemeContext";
+
+export default function Heading() {
+  const { color } = useContext(ThemeContext);
+
   return <h1 style={{ color }}>Hello, world!</h1>;
 }

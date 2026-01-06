@@ -1,28 +1,27 @@
-import React, { useRef } from "react";
+import React, { useState, useContext } from "react";
 
-export default function UserForm({ user, setUser }) {
-  const inputNameRef = useRef();
-  const inputAllowEmailRef = useRef();
+import UserContext from "../../contexts/UserContext";
+
+export default function UserForm() {
+  const [formUser, setFormUser] = useState(null);
+
+  const { user, setUser } = useContext(UserContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setUser({
-      name: inputNameRef.current.value,
-      allowEmail: inputAllowEmailRef.current.checked,
-    });
+
+    setUser(formUser);
   };
 
   return (
     <form className="form" onSubmit={handleSubmit}>
       <label>
-        Name: <input type="text" defaultValue={user.name} ref={inputNameRef} />
-      </label>
-      <label>
-        Allow email:{" "}
+        Name:{" "}
         <input
-          type="checkbox"
-          defaultChecked={user.allowEmail}
-          ref={inputAllowEmailRef}
+          type="text"
+          onChange={(e) =>
+            setFormUser((prevState) => ({ ...prevState, name: e.target.value }))
+          }
         />
       </label>
       <button>Submit</button>
