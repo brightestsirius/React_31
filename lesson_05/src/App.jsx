@@ -1,19 +1,24 @@
 import React, { useState } from "react";
+
+import Heading from "./components/Heading/Heading";
+import ColorPicker from "./components/ColorPicker/ColorPicker";
+
 import UserForm from "./components/UserForm/UserForm";
 import UserCard from "./components/UserCard/UserCard";
-import ColorPicker from "./components/ColorPicker/ColorPicker";
-import Heading from "./components/Heading/Heading";
 
 export default function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({
+    name: `Daria`,
+    allowEmail: true,
+  });
   const [color, setColor] = useState(null);
 
   return (
     <>
-      <ColorPicker liftingColor={setColor} />
       <Heading color={color} />
-      <UserForm liftingUser={setUser} />
-      <UserCard user={user} color={color} />
+      <ColorPicker liftingColor={setColor} />
+      <UserForm user={user} setUser={setUser} />
+      <UserCard user={user} />
     </>
   );
 }

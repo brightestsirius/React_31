@@ -1,34 +1,28 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 
-export default function UserForm({ liftingUser }) {
-  const [user, setUser] = useState({
-    name: `Daria`,
-    allowEmail: true,
-  });
+export default function UserForm({ user, setUser }) {
+  const inputNameRef = useRef();
+  const inputAllowEmailRef = useRef();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    liftingUser(user);
+    setUser({
+      name: inputNameRef.current.value,
+      allowEmail: inputAllowEmailRef.current.checked,
+    });
   };
 
-  const handleUserName = (e) =>
-    setUser((prevState) => ({ ...prevState, name: e.target.value }));
-
-  const handleUserEmail = (e) =>
-    setUser((prevState) => ({ ...prevState, allowEmail: e.target.checked }));
-
   return (
-    <form onSubmit={handleSubmit} className="form">
+    <form className="form" onSubmit={handleSubmit}>
       <label>
-        Name:{" "}
-        <input type="text" defaultValue={user.name} onChange={handleUserName} />
+        Name: <input type="text" defaultValue={user.name} ref={inputNameRef} />
       </label>
       <label>
         Allow email:{" "}
         <input
           type="checkbox"
           defaultChecked={user.allowEmail}
-          onChange={handleUserEmail}
+          ref={inputAllowEmailRef}
         />
       </label>
       <button>Submit</button>
