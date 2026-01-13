@@ -10,6 +10,7 @@ import TodoItemRoute from "../routes/todos/item.route";
 
 import todosLoader from "../routes/todos/todos.loader";
 import todoItemLoader from "../routes/todos/item.loader";
+import todosAction from "../routes/todos/action";
 
 import Loader from "../components/Loader/Loader";
 import ErrorPage from "../pages/ErrorPage";
@@ -38,6 +39,7 @@ const router = createBrowserRouter([
             Component: TodosRoute,
             errorElement: <ErrorPage />,
             loader: todosLoader,
+            action: todosAction,
             HydrateFallback: Loader,
           },
           {
