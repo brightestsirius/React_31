@@ -1,10 +1,12 @@
 import React from "react";
 import { Outlet } from "react-router";
 
-export default function TodosLayout() {
+import Header from "../components/Header/Header";
+
+export default function RootLayout() {
   return (
     <>
-      <h2>Todos 🌺</h2>
+      <Header />
       <Outlet />
     </>
   );
