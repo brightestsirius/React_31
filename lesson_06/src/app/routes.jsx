@@ -1,4 +1,4 @@
-import React from "react";
+import React, {lazy, Suspense} from "react";
 import { createBrowserRouter } from "react-router";
 
 import RootLayout from "../layouts/RootLayout";
@@ -14,6 +14,10 @@ import todosLoader from "../routes/todos/todos.loader";
 import todosItemLoader from "../routes/todos/todosItem.loader";
 
 import Loader from "../components/Loader/Loader";
+
+import AuthGuard from "./../guard/AuthGuard";
+
+const AccountRouteLazy = lazy(() => import("../routes/AccountRoute"));
 
 const router = createBrowserRouter([
   {
@@ -44,6 +48,17 @@ const router = createBrowserRouter([
             HydrateFallback: Loader,
           },
         ],
+      },
+      {
+        path: "account",
+        element: (
+          <AuthGuard>
+            <Suspense fallback={<Loader />}>
+              <AccountRouteLazy />
+            </Suspense>
+          </AuthGuard>
+        ),
+        errorElement: <ErrorPage />,
       },
     ],
   },
