@@ -7,11 +7,11 @@ import {
   useUpdatePostMutation,
   useDeletePostMutation,
   useGetPostsTitlesQuery,
-  useLazyGetPostsTitlesQuery
+  useLazyGetPostsTitlesQuery,
 } from "../../store/services/posts";
 
 export default function Posts() {
-  const { data, isLoading, error, refetch } = useGetPostsQuery();
+  const { data, isLoading, isFetching, error, refetch } = useGetPostsQuery();
   const [deletePost] = useDeletePostMutation();
   const [updatePost] = useUpdatePostMutation();
   const [addPost] = useAddPostMutation();
@@ -30,9 +30,18 @@ export default function Posts() {
   // const [fetchTitle, setFetchTitles] = useState(false);
   // const {data: titles} = useGetPostsTitlesQuery(undefined, {skip: !fetchTitle});
 
-  const [getTitles, {data: titles, isLoading: titlesLoading, error: titlesError }] = useLazyGetPostsTitlesQuery();
+  const [
+    getTitles,
+    {
+      data: titles,
+      isLoading: titlesLoading,
+      isFetching: titlesFetching,
+      error: titlesError,
+    },
+  ] = useLazyGetPostsTitlesQuery();
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <p>Loading posts...</p>;
+  if (isFetching && !isLoading) return <p>Updating posts...</p>;
   if (error) return <p>Oops: {error}</p>;
 
   const changeChange = (item) => {
@@ -74,6 +83,7 @@ export default function Posts() {
       ) : null}
 
       {titlesLoading && <p>Loading titles...</p>}
+      {titlesFetching && !titlesLoading && <p>Fetching titles...</p>}
       {titlesError && <p>Error loading titles: {titlesError.toString()}</p>}
 
       {titles ? (
