@@ -6,93 +6,106 @@ import {
   useGetPostQuery,
   useUpdatePostMutation,
   useDeletePostMutation,
-  useGetPostsTitlesQuery,
-  useLazyGetPostsTitlesQuery,
+  useLazyGetPostsTitleQuery,
 } from "../../store/services/posts";
 
 export default function Posts() {
-  const { data, isLoading, isFetching, error, refetch } = useGetPostsQuery();
+  const {
+    data: posts,
+    isLoading,
+    error,
+    isFetching,
+    refetch,
+  } = useGetPostsQuery();
   const [deletePost] = useDeletePostMutation();
-  const [updatePost] = useUpdatePostMutation();
+  const [changePost] = useUpdatePostMutation();
   const [addPost] = useAddPostMutation();
 
+  const {
+    titles,
+    isLoading: isLoadingTitles,
+    isFetching: isFetchingTitles,
+    error: errorTitles,
+  } = useGetPostsQuery(undefined, {
+    selectFromResult: ({ data }) => ({
+      titles: data?.map((post) => post.title) || [],
+      isLoading,
+      isFetching,
+      error,
+    }),
+  });
+
   const [postId, setPostId] = useState();
-  const { data: post } = useGetPostQuery(postId, { skip: !postId });
-
-  // const { titles, isLoading: titlesLoading, error: titlesError } = useGetPostsQuery(undefined, {
-  //   selectFromResult: ({ data }) => ({
-  //     titles: data?.map((p) => p.title) || [],
-  //     isLoading,
-  //     error
-  //   })
-  // });
-
-  // const [fetchTitle, setFetchTitles] = useState(false);
-  // const {data: titles} = useGetPostsTitlesQuery(undefined, {skip: !fetchTitle});
+  const {
+    data: dataPost,
+    isLoading: isLoadingPost,
+    error: errorPost,
+  } = useGetPostQuery(postId, { skip: !postId });
 
   const [
-    getTitles,
-    {
-      data: titles,
-      isLoading: titlesLoading,
-      isFetching: titlesFetching,
-      error: titlesError,
-    },
-  ] = useLazyGetPostsTitlesQuery();
+    getPostsTitle,
+    { data: postsTitle, isLoading: isLoadingPostsTitle, error: errorPostsTitle },
+  ] = useLazyGetPostsTitleQuery();
 
-  if (isLoading) return <p>Loading posts...</p>;
-  if (isFetching && !isLoading) return <p>Updating posts...</p>;
-  if (error) return <p>Oops: {error}</p>;
-
-  const changeChange = (item) => {
-    const title = prompt(`Enter post title`, `New title`);
-    updatePost({ id: item.id, title });
+  const handlePostTitle = (item) => {
+    changePost({ id: item.id, title: item.title + `!` });
   };
 
-  const handleAdd = () => {
-    const title = prompt(`Enter post title`, `New title`);
+  const handleAddPost = () => {
+    const title = prompt(`Enter title`, `New title`);
     addPost({ title });
   };
 
-  const handlePost = () => {
+  const getPostById = () => {
     const id = +prompt(`Enter post id`, 10);
     setPostId(id);
   };
 
+  if (isLoading) return <p>Loading posts...</p>;
+  if (isFetching && !isLoading) return <p>Updating posts...</p>;
+  if (error) return <p>Oops {error.toString()}</p>;
+
   return (
-    <div style={{ margin: `10px 0` }}>
+    <div style={{ margin: "10px 0" }}>
+      <button onClick={handleAddPost}>Add post</button>
       <button onClick={refetch}>Refetch</button>
-      <button onClick={handleAdd}>Add new post</button>
-      <button onClick={handlePost}>Get post info by id</button>
-      <button onClick={() => getTitles()}>Get posts titles</button>
+      <button onClick={() => getPostsTitle()}>Get posts title</button>
 
       <ul>
-        {data.map((item) => (
+        {posts.map((item) => (
           <li key={item.id}>
             {item.title}{" "}
-            <button onClick={() => changeChange(item)}>Change title</button>
             <button onClick={() => deletePost(item.id)}>Delete</button>
+            <button onClick={() => handlePostTitle(item)}>Change title</button>
           </li>
         ))}
       </ul>
 
-      {post ? (
-        <div>
-          <h3>{post.title}</h3>
-        </div>
-      ) : null}
+      <hr></hr>
 
-      {titlesLoading && <p>Loading titles...</p>}
-      {titlesFetching && !titlesLoading && <p>Fetching titles...</p>}
-      {titlesError && <p>Error loading titles: {titlesError.toString()}</p>}
+      {isLoadingTitles && <p>Loading titles...</p>}
+      {isFetchingTitles && !isLoadingTitles && <p>Updating titles...</p>}
+      <ul>
+        {titles.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
 
-      {titles ? (
+      <hr />
+      {isLoadingPostsTitle && <p>Loading titles...</p>}
+      {postsTitle ? (
         <ul>
-          {titles.map((item, index) => (
+          {postsTitle.map((item, index) => (
             <li key={index}>{item}</li>
           ))}
         </ul>
       ) : null}
+
+      <button onClick={getPostById}>Get post by id</button>
+
+      {isLoadingPost && <p>Post loading...</p>}
+      {errorPost && <p>Oops {errorPost.toString()}...</p>}
+      {dataPost && <h4>{dataPost.title}</h4>}
     </div>
   );
 }

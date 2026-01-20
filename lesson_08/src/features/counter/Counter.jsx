@@ -7,32 +7,30 @@ import {
 } from "../../store/features/counter/counterSlice";
 
 export default function Counter() {
-  const count = useSelector((state) => state.counter.value);
+  const counter = useSelector((state) => state.counter.value);
   const dispatch = useDispatch();
 
-  const handleIncrement = () => {
-    const amount = +prompt(`Enter amount`, 10);
-    dispatch(incrementByAmount(amount));
+  const handleIncrementByAmount = () => {
+    const value = +prompt(`Enter value`, 10);
+    dispatch(incrementByAmount(value));
   };
 
   return (
     <div>
-      <div>
-        <button
-          aria-label="Increment value"
-          onClick={() => dispatch(increment())}
-        >
-          Increment
-        </button>
-        <span> {count} </span>
-        <button
-          aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}
-        >
-          Decrement
-        </button>
-        <button onClick={handleIncrement}>Increment by amount</button>
-      </div>
+      <button
+        aria-label="Increment value"
+        onClick={() => dispatch(increment())}
+      >
+        Increment
+      </button>
+      <span> {counter} </span>
+      <button
+        aria-label="Decrement value"
+        onClick={() => dispatch(decrement())}
+      >
+        Decrement
+      </button>
+      <button onClick={handleIncrementByAmount}>Increment by amount</button>
     </div>
   );
 }
