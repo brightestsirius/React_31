@@ -1,13 +1,14 @@
 import React from "react";
-import Bears from "./components/Bears/Bears";
-import TodosPage from "./pages/TodosPage/TodosPage";
+
+import Bears from "./features/Bears/Bears";
+import PostsPage from "./features/Posts/PostsPage";
 
 export default function App() {
   return (
     <>
       <Bears />
       <hr />
-      <TodosPage />
+      <PostsPage />
     </>
   );
 }
