@@ -1,16 +1,16 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
-import postsApi from "../api/postsApi";
+import service from "../services/posts.service";
 
 export const usePostsQuery = () => {
-  return useQuery({ queryKey: ["posts"], queryFn: () => postsApi.get() });
+  return useQuery({ queryKey: ["posts"], queryFn: () => service.get() });
 };
 
-export const useDeletePostsMutation = () => {
+export const usePostDeleteMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (id) => postsApi.delete(id),
+    mutationFn: (id) => service.delete(id),
     onMutate: async (id) => {
       await queryClient.cancelQueries({ queryKey: ["posts"] });
       const prev = queryClient.getQueryData(["posts"]);
@@ -31,22 +31,22 @@ export const useDeletePostsMutation = () => {
   });
 };
 
-export const useUpdatePostsMutation = () => {
+export const usePostUpdateMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (item) => postsApi.put(item),
+    mutationFn: (payload) => service.put(payload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["posts"] });
     },
   });
 };
 
-export const useCreatePostsMutation = () => {
+export const usePostCreateMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (item) => postsApi.post(item),
+    mutationFn: (payload) => service.post(payload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["posts"] });
     },

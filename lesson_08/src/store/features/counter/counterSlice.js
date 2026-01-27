@@ -2,8 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   value: 0,
-  color: `red`,
-  list: [`cat`, `dog`]
 }
 
 export const counterSlice = createSlice({

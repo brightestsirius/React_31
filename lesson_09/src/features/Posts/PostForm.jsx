@@ -1,63 +1,45 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z as zod } from "zod";
 
 import { POST_STATUS } from "../../store/usePostsStore";
 import {
-  useUpdatePostsMutation,
-  useCreatePostsMutation,
-} from "../../queries/postsQueries";
+  usePostUpdateMutation,
+  usePostCreateMutation,
+} from "../../queries/postQueries";
 
-const schema = zod.object({
-  title: zod
-    .string()
-    .min(3, `Title: min 3 symbols`)
-    .max(10, `Title: max 10 symbols`),
-  body: zod.string().min(3, `Body: min 3 symbols`),
-  status: zod.enum([POST_STATUS.DRAFT, POST_STATUS.PUBLISHED]),
-});
-
-export default function PostForm({ initial, onDone }) {
-  const update = useUpdatePostsMutation();
-  const create = useCreatePostsMutation();
-
+export default function PostForm({ currentPost }) {
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
   } = useForm({
-    resolver: zodResolver(schema),
-    mode: "onChange",
-    values: initial
+    values: currentPost
       ? {
-          title: initial.title ?? ``,
-          body: initial.body ?? ``,
-          status: initial.status ?? POST_STATUS.DRAFT,
+          title: currentPost.title ?? ``,
+          status: currentPost.status ?? POST_STATUS.DRAFT,
         }
       : {
           title: ``,
-          body: ``,
           status: POST_STATUS.DRAFT,
         },
   });
 
+  const update = usePostUpdateMutation();
+  const create = usePostCreateMutation();
+
   const onSubmit = (data) => {
-    if (initial) {
-      update.mutate({id: initial.id, ...data}, {onSuccess: onDone});
+    if (currentPost) {
+      update.mutate({ id: currentPost.id, ...data });
     } else {
-      create.mutate(data, {onSuccess: onDone});
+      create.mutate(data);
     }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="modal__form">
       <label>
-        Title: <input type="text" {...register("title")} />
-        {errors.title && <span className="error">This field is required</span>}
-      </label>
-      <label>
-        Body: <textarea {...register("body")}></textarea>
+        Title: <input type="text" {...register("title", { required: true })} />
+        {errors.title && <span>This field is required</span>}
       </label>
       <label>
         Status:{" "}

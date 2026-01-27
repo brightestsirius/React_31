@@ -7,18 +7,15 @@ export const POST_STATUS = {
 };
 
 const usePostsStore = create((set) => ({
-  status: POST_STATUS.ALL,
-  search: ``,
+  isModalOpen: false,
+  editingPostId: null,
 
-  setStatus: (status) => set({ status }),
-  setSearch: (search) => set({ search }),
-
-  isEditorOpen: false,
-  editPostId: null,
-
-  openCreate: () => set(() => ({ isEditorOpen: true, editPostId: null })),
-  openEditor: (id) => set(() => ({ isEditorOpen: true, editPostId: id })),
-  closeEditor: () => set(() => ({ isEditorOpen: false, editPostId: null })),
+  openModel: (id) =>
+    set(() => {
+      if (id) return { isModalOpen: true, editingPostId: id };
+      else return { isModalOpen: true };
+    }),
+  closeModel: () => set({ isModalOpen: false, editingPostId: null }),
 }));
 
 export default usePostsStore;
