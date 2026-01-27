@@ -11,7 +11,21 @@ export const useDeletePostsMutation = () => {
 
   return useMutation({
     mutationFn: (id) => postsApi.delete(id),
-    onSuccess: () => {
+    onMutate: async (id) => {
+      await queryClient.cancelQueries({ queryKey: ["posts"] });
+      const prev = queryClient.getQueryData(["posts"]);
+
+      queryClient.setQueryData(["posts"], (old) => {
+        if (!Array.isArray(old)) return old;
+        return old.filter((p) => p.id !== id);
+      });
+
+      return { prev };
+    },
+    onError: (_err, _id, ctx) => {
+      if (ctx?.prev) queryClient.setQueryData(["posts"], ctx.prev);
+    },
+    onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["posts"] });
     },
   });

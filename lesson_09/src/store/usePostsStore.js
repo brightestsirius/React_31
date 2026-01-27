@@ -7,6 +7,12 @@ export const POST_STATUS = {
 };
 
 const usePostsStore = create((set) => ({
+  status: POST_STATUS.ALL,
+  search: ``,
+
+  setStatus: (status) => set({ status }),
+  setSearch: (search) => set({ search }),
+
   isEditorOpen: false,
   editPostId: null,
 
