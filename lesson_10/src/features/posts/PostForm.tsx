@@ -1,14 +1,15 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import {z as zod} from "zod"
+import { z as zod } from "zod"
 
-import { POST_STATUS } from "../../store/usePostsStore";
+import { POST_STATUS } from "../../types/post";
 import {
   usePostUpdateMutation,
   usePostCreateMutation,
 } from "../../queries/postQueries";
+
+import type { Post } from "../../types/post"
 
 const schema = zod
   .object({
@@ -16,29 +17,32 @@ const schema = zod
     status: zod.enum([POST_STATUS.DRAFT, POST_STATUS.PUBLISHED])
   })
 
-export default function PostForm({ currentPost, onDone }) {
+type Props = { currentPost: Post, onDone: () => void }
+type FormValues = zod.infer<typeof schema>
+
+export default function PostForm({ currentPost, onDone }: Props) {
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm({
+  } = useForm<FormValues>({
     resolver: zodResolver(schema),
     mode: `onChange`,
     values: currentPost
       ? {
-          title: currentPost.title ?? ``,
-          status: currentPost.status ?? POST_STATUS.DRAFT,
-        }
+        title: currentPost.title ?? ``,
+        status: currentPost.status ?? POST_STATUS.DRAFT,
+      }
       : {
-          title: ``,
-          status: POST_STATUS.DRAFT,
-        },
+        title: ``,
+        status: POST_STATUS.DRAFT,
+      },
   });
 
   const update = usePostUpdateMutation();
   const create = usePostCreateMutation();
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: FormValues) => {
     if (currentPost) {
       update.mutate({ id: currentPost.id, ...data }, { onSuccess: onDone });
     } else {

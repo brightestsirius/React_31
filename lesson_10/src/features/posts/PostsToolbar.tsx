@@ -1,6 +1,6 @@
-import React from "react";
-import usePostsStore from "./../../store/usePostsStore";
-import { POST_STATUS } from "../../store/usePostsStore";
+import usePostsStore from "../../store/usePostsStore";
+import { POST_STATUS } from "../../types/post";
+import type { FilterStatus } from "../../types/post"
 
 export default function PostsToolbar() {
   const openModal = usePostsStore((s) => s.openModal);
@@ -11,11 +11,19 @@ export default function PostsToolbar() {
   const search = usePostsStore((s) => s.search);
   const setSearch = usePostsStore((s) => s.setSearch);
 
+  const onChangeFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFilterStatus(e.target.value as FilterStatus);
+  }
+
+  const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  }
+
   return (
     <div className="toolbar">
-      <button onClick={openModal}>+ Post</button>
+      <button onClick={() => openModal()}>+ Post</button>
 
-      <select defaultValue={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
+      <select defaultValue={filterStatus} onChange={onChangeFilter}>
         <option value={POST_STATUS.ALL}>All</option>
         <option value={POST_STATUS.DRAFT}>Draft</option>
         <option value={POST_STATUS.PUBLISHED}>Published</option>
@@ -25,7 +33,7 @@ export default function PostsToolbar() {
         type="text"
         placeholder="Search"
         defaultValue={search}
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={onChangeSearch}
       />
     </div>
   );

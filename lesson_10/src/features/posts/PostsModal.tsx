@@ -1,8 +1,10 @@
-import React from "react";
-import usePostsStore from "./../../store/usePostsStore";
+import usePostsStore from "../../store/usePostsStore";
 import PostForm from "./PostForm";
+import type { Post } from "../../types/post"
 
-export default function PostsModal({ posts }) {
+type Props = { posts: Post[] }
+
+export default function PostsModal({ posts }: Props) {
   const isModalOpen = usePostsStore((s) => s.isModalOpen);
   const closeModal = usePostsStore((s) => s.closeModal);
   const editingPostId = usePostsStore((s) => s.editingPostId);

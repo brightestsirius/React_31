@@ -10,6 +10,12 @@ const usePostsStore = create((set) => ({
   isModalOpen: false,
   editingPostId: null,
 
+  filterStatus: POST_STATUS.ALL,
+  setFilterStatus: (filterStatus) => set({filterStatus}),
+
+  search: ``,
+  setSearch: (search) => set({search}),
+
   openModal: (id) =>
     set(() => {
       if (id) return { isModalOpen: true, editingPostId: id };

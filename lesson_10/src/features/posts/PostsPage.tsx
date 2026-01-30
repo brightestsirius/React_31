@@ -1,15 +1,15 @@
-import React, {useMemo} from "react";
+import { useMemo } from "react";
 
 import PostsToolbar from "./PostsToolbar";
 import PostsList from "./PostsList";
 import PostsModal from "./PostsModal";
 
 import { usePostsQuery } from "../../queries/postQueries";
-import {POST_STATUS} from "../../store/usePostsStore"
+import { POST_STATUS } from "../../types/post"
 import usePostsStore from "../../store/usePostsStore";
 
 export default function PostsPage() {
-  const { data: posts=[], isLoading, isError, error } = usePostsQuery();
+  const { data: posts = [], isLoading, isError, error } = usePostsQuery();
 
   const filterStatus = usePostsStore(s => s.filterStatus);
   const search = usePostsStore(s => s.search);
@@ -31,7 +31,10 @@ export default function PostsPage() {
   }, [posts, search, filterStatus]);
 
   if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Error: {error?.message}</p>;
+  if (isError) {
+    const message = error instanceof Error ? error.message : `Unknown error`;
+    return <p>Error: {message}</p>;
+  }
 
   return (
     <>
