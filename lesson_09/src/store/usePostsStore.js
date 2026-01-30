@@ -10,12 +10,12 @@ const usePostsStore = create((set) => ({
   isModalOpen: false,
   editingPostId: null,
 
-  openModel: (id) =>
+  openModal: (id) =>
     set(() => {
       if (id) return { isModalOpen: true, editingPostId: id };
       else return { isModalOpen: true };
     }),
-  closeModel: () => set({ isModalOpen: false, editingPostId: null }),
+  closeModal: () => set({ isModalOpen: false, editingPostId: null }),
 }));
 
 export default usePostsStore;

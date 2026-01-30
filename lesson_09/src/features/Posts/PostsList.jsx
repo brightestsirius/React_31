@@ -5,7 +5,7 @@ import {POST_STATUS} from './../../store/usePostsStore'
 
 export default function PostsList({ posts }) {
   const del = usePostDeleteMutation();
-  const openModel = usePostsStore((s) => s.openModel);
+  const openModal = usePostsStore((s) => s.openModal);
 
   const getClassName = (item) => {
     const classes = [`list__item`];
@@ -19,7 +19,7 @@ export default function PostsList({ posts }) {
         <li key={item.id} className={getClassName(item)}>
           {item.title}{" "}
           <button onClick={() => del.mutate(item.id)}>Delete</button>{" "}
-          <button onClick={() => openModel(item.id)}>Update</button>
+          <button onClick={() => openModal(item.id)}>Update</button>
         </li>
       ))}
     </ul>

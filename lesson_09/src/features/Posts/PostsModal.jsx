@@ -4,7 +4,7 @@ import PostForm from "./PostForm";
 
 export default function PostsModal({ posts }) {
   const isModalOpen = usePostsStore((s) => s.isModalOpen);
-  const closeModel = usePostsStore((s) => s.closeModel);
+  const closeModal = usePostsStore((s) => s.closeModal);
   const editingPostId = usePostsStore((s) => s.editingPostId);
 
   if (!isModalOpen) return;
@@ -14,13 +14,13 @@ export default function PostsModal({ posts }) {
     : null;
 
   return (
-    <div className="modal" onClick={closeModel}>
+    <div className="modal" onClick={closeModal}>
       <div className="modal__container" onClick={(e) => e.stopPropagation()}>
         <div className="modal__header">
           <h4>
             {currentPost ? `Editing post #${currentPost.id}` : `Create post`}
           </h4>
-          <button onClick={closeModel}>x</button>
+          <button onClick={closeModal}>x</button>
         </div>
         <div className="modal__body">
           <PostForm currentPost={currentPost} />
