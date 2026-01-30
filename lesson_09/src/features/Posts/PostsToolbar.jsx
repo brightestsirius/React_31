@@ -5,7 +5,7 @@ export default function PostsToolbar() {
   const openModel = usePostsStore((s) => s.openModel);
 
   return (
-    <div>
+    <div className="toolbar">
       <button onClick={openModel}>+ Post</button>
       <select name="" id=""></select>
       <input type="text" placeholder="Search" />

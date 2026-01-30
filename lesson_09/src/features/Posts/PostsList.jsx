@@ -1,15 +1,22 @@
 import React from "react";
 import { usePostDeleteMutation } from "../../queries/postQueries";
 import usePostsStore from "./../../store/usePostsStore";
+import {POST_STATUS} from './../../store/usePostsStore'
 
 export default function PostsList({ posts }) {
   const del = usePostDeleteMutation();
   const openModel = usePostsStore((s) => s.openModel);
 
+  const getClassName = (item) => {
+    const classes = [`list__item`];
+    item.status === POST_STATUS.PUBLISHED && classes.push(`list__item--published`);
+    return classes.join(` `);
+  }
+
   return posts.length ? (
     <ul>
       {posts.map((item) => (
-        <li key={item.id}>
+        <li key={item.id} className={getClassName(item)}>
           {item.title}{" "}
           <button onClick={() => del.mutate(item.id)}>Delete</button>{" "}
           <button onClick={() => openModel(item.id)}>Update</button>
