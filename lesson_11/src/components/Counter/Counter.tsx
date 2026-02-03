@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-export function Counter() {
+export default function Counter() {
   const [count, setCount] = useState(0);
 
   return (
-    <div>
+    <div className="counter">
       <p aria-label="count-value">Count: {count}</p>
 
       <button type="button" onClick={() => setCount((c) => c + 1)}>
