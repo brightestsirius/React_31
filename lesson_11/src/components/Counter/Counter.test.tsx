@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import userEvent from "@testing-library/user-event";
-import { Counter } from "./Counter";
+import Counter from "./Counter";
 
 describe("Counter", () => {
     it("shows initial value", () => {
