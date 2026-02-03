@@ -1,10 +1,10 @@
-import Counter from "./components/Counter/Counter"
+// import Counter from "./components/Counter/Counter"
 import PostsPage from "./features/posts/PostsPage"
 
 export default function App() {
   return (
     <>
-      <Counter />
+      {/* <Counter /> */}
       <PostsPage />
     </>
   )

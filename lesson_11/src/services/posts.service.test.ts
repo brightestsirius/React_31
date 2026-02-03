@@ -22,7 +22,7 @@ type MockedAxios = {
 
 const mockedAxios = axios as unknown as MockedAxios;
 
-describe("posts.service (API layer)", () => {
+describe.only("posts.service (API layer)", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
@@ -32,7 +32,8 @@ describe("posts.service (API layer)", () => {
       { id: "1", title: "A", content: "x", status: "draft" as any },
     ];
 
-    mockedAxios.mockResolvedValueOnce({ data: apiPosts }); // mockFn.mockImplementationOnce(() => Promise.resolve(value));
+    mockedAxios.mockResolvedValueOnce({ data: apiPosts });
+    // mockFn.mockImplementationOnce(() => Promise.resolve(value));
 
     const res = await service.list();
 

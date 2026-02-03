@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach } from "vitest";
 import usePostsStore from "./usePostsStore";
 import { POST_STATUS } from "../types/post";
 
-describe("usePostsStore", () => {
+describe.only("usePostsStore", () => {
   beforeEach(() => {
     usePostsStore.setState({
       isModalOpen: false,
