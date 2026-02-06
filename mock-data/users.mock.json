@@ -1,0 +1,254 @@
+[
+  {
+    "id": "1",
+    "name": "Leanne Graham",
+    "username": "Bret",
+    "email": "Sincere@april.biz",
+    "address": {
+      "street": "Kulas Light",
+      "suite": "Apt. 556",
+      "city": "Gwenborough",
+      "zipcode": "92998-3874",
+      "geo": { "lat": "-37.3159", "lng": "81.1496" }
+    },
+    "phone": "1-770-736-8031 x56442",
+    "website": "hildegard.org",
+    "company": {
+      "name": "Romaguera-Crona",
+      "catchPhrase": "Multi-layered client-server neural-net",
+      "bs": "harness real-time e-markets"
+    },
+    "married": false
+  },
+  {
+    "id": "2",
+    "name": "Ervin Howell",
+    "username": "Antonette",
+    "email": "Shanna@melissa.tv",
+    "address": {
+      "street": "Victor Plains",
+      "suite": "Suite 879",
+      "city": "Wisokyburgh",
+      "zipcode": "90566-7771",
+      "geo": { "lat": "-43.9509", "lng": "-34.4618" }
+    },
+    "phone": "010-692-6593 x09125",
+    "website": "anastasia.net",
+    "company": {
+      "name": "Deckow-Crist",
+      "catchPhrase": "Proactive didactic contingency",
+      "bs": "synergize scalable supply-chains"
+    },
+    "married": false
+  },
+  {
+    "id": "3",
+    "name": "Clementine Bauch",
+    "username": "Samantha",
+    "email": "Nathan@yesenia.net",
+    "address": {
+      "street": "Douglas Extension",
+      "suite": "Suite 847",
+      "city": "McKenziehaven",
+      "zipcode": "59590-4157",
+      "geo": { "lat": "-68.6102", "lng": "-47.0653" }
+    },
+    "phone": "1-463-123-4447",
+    "website": "ramiro.info",
+    "company": {
+      "name": "Romaguera-Jacobson",
+      "catchPhrase": "Face to face bifurcated interface",
+      "bs": "e-enable strategic applications"
+    },
+    "married": false
+  },
+  {
+    "id": "4",
+    "name": "Stephanie Evans",
+    "username": "obrooks",
+    "email": "fordlindsey@cook.biz",
+    "address": {
+      "street": "Kaitlin Road",
+      "suite": "Suite 087",
+      "city": "North Stephanie",
+      "zipcode": "67013",
+      "geo": { "lat": "-76.088347", "lng": "-9.404126" }
+    },
+    "phone": "001-738-214-4190x5707",
+    "website": "guzman-johnson.com",
+    "company": {
+      "name": "Garcia, Martin and Guerrero",
+      "catchPhrase": "Triple-buffered real-time firmware",
+      "bs": "incubate revolutionary supply-chains"
+    },
+    "married": true
+  },
+  {
+    "id": "5",
+    "name": "Willie Holland",
+    "username": "catherinethomas",
+    "email": "vargascaitlin@mcpherson.com",
+    "address": {
+      "street": "Lisa Stravenue",
+      "suite": "Suite 580",
+      "city": "East Melissa",
+      "zipcode": "30825",
+      "geo": { "lat": "-29.882139", "lng": "11.436449" }
+    },
+    "phone": "001-709-939-4436x674",
+    "website": "dawson.net",
+    "company": {
+      "name": "Moses-Hurst",
+      "catchPhrase": "Synergized full-range conglomeration",
+      "bs": "embrace customized experiences"
+    },
+    "married": true
+  },
+  {
+    "id": "6",
+    "name": "Erin James",
+    "username": "ugilbert",
+    "email": "cschmitt@blair.biz",
+    "address": {
+      "street": "Hernandez Mountain",
+      "suite": "Suite 536",
+      "city": "East Timothy",
+      "zipcode": "65646",
+      "geo": { "lat": "-79.551454", "lng": "157.141277" }
+    },
+    "phone": "9692393536",
+    "website": "lambert.org",
+    "company": {
+      "name": "Page PLC",
+      "catchPhrase": "Secured mobile installation",
+      "bs": "redefine granular relationships"
+    },
+    "married": true
+  },
+  {
+    "id": "7",
+    "name": "Thomas Anderson",
+    "username": "sandragross",
+    "email": "dianataylor@hotmail.com",
+    "address": {
+      "street": "Madison Ranch",
+      "suite": "Apt. 913",
+      "city": "Jasonton",
+      "zipcode": "24131",
+      "geo": { "lat": "18.2360875", "lng": "-32.098009" }
+    },
+    "phone": "170.054.6584",
+    "website": "howell.com",
+    "company": {
+      "name": "Jenkins-Flowers",
+      "catchPhrase": "Open-source didactic migration",
+      "bs": "integrate one-to-one applications"
+    },
+    "married": true
+  },
+  {
+    "id": "8",
+    "name": "Edward Oconnor",
+    "username": "melissa06",
+    "email": "zsharp@gmail.com",
+    "address": {
+      "street": "Lee Estate",
+      "suite": "Apt. 378",
+      "city": "Collinsberg",
+      "zipcode": "81906",
+      "geo": { "lat": "-9.509538", "lng": "-20.653124" }
+    },
+    "phone": "5299144949",
+    "website": "baldwin.com",
+    "company": {
+      "name": "Clark Ltd",
+      "catchPhrase": "Reactive didactic benchmark",
+      "bs": "whiteboard web-enabled e-commerce"
+    },
+    "married": true
+  },
+  {
+    "id": "9",
+    "name": "Samantha Turner",
+    "username": "chenbrett",
+    "email": "brenda86@webster-rodriguez.com",
+    "address": {
+      "street": "Morales River",
+      "suite": "Apt. 715",
+      "city": "New Janet",
+      "zipcode": "56511",
+      "geo": { "lat": "-20.7391095", "lng": "-161.867864" }
+    },
+    "phone": "804-574-4554",
+    "website": "lee-johnson.com",
+    "company": {
+      "name": "Hayes-Bailey",
+      "catchPhrase": "Proactive optimal service-desk",
+      "bs": "whiteboard B2C web services"
+    },
+    "married": true
+  },
+  {
+    "id": "10",
+    "name": "Luis Murphy",
+    "username": "jasonthomas",
+    "email": "derrick69@yahoo.com",
+    "address": {
+      "street": "Danielle Corner",
+      "suite": "Suite 416",
+      "city": "Garciamouth",
+      "zipcode": "33951",
+      "geo": { "lat": "-77.372897", "lng": "92.905453" }
+    },
+    "phone": "173-848-5072x1376",
+    "website": "hudson.com",
+    "company": {
+      "name": "Moody-Small",
+      "catchPhrase": "Re-engineered intangible portal",
+      "bs": "empower ubiquitous technologies"
+    },
+    "married": false
+  },
+  {
+    "id": "11",
+    "name": "Patrick Kirby",
+    "username": "xdominguez",
+    "email": "lroberts@hotmail.com",
+    "address": {
+      "street": "Francisco Village",
+      "suite": "Suite 910",
+      "city": "Kaufmanstad",
+      "zipcode": "87836",
+      "geo": { "lat": "-45.9941645", "lng": "154.797147" }
+    },
+    "phone": "(383)995-3707x841",
+    "website": "taylor.com",
+    "company": {
+      "name": "Wang, Galloway and Kirby",
+      "catchPhrase": "Virtual incremental software",
+      "bs": "strategize vertical experiences"
+    },
+    "married": false
+  },
+  {
+    "id": "12",
+    "name": "Katherine Rodgers",
+    "username": "weberkatrina",
+    "email": "dawn74@hotmail.com",
+    "address": {
+      "street": "Kristen Square",
+      "suite": "Apt. 003",
+      "city": "Johnville",
+      "zipcode": "25857",
+      "geo": { "lat": "25.4798175", "lng": "11.743895" }
+    },
+    "phone": "001-020-061-8513x010",
+    "website": "james.net",
+    "company": {
+      "name": "Mendez Group",
+      "catchPhrase": "Cross-platform uniform success",
+      "bs": "transform holistic initiatives"
+    },
+    "married": true
+  }
+]
